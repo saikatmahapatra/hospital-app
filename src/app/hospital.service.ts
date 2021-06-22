@@ -20,8 +20,8 @@ export class HospitalService {
 
   }
 
-  deleteHospital() {
-    
+  deleteHospital(hospital) {
+    return this.http.delete(this.baseURL + '/hospitals/' + hospital.id);
   }
 
 }

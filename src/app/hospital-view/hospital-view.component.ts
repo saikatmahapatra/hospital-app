@@ -55,6 +55,10 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
 
   deleteHospital(hospital) {
     console.log(hospital);
+    this.hospitalSvc.deleteHospital(hospital).subscribe( () => {
+      alert('Hospital has been deleted successfully!');
+      this.getAllHospitals();
+    });
   }
 
   ngOnDestroy() {
