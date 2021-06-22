@@ -2,19 +2,50 @@
 
 <div class="row my-3">
     <div class="col-md-12">
-        <form class="" (submit)="addHospital()">
-            <div class="form-row">
+        <!-- <form [formGroup]="hospitalForm" (ngSubmit)="addHospital();">
+            <div class="row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="hospitalName" placeholder="Hospital Name" maxlength="60" minlength="3" required>
+                    <input type="text" formControlName="hospitalname" class="form-control" placeholder="Hospital Name">
+                    <app-validation-error [control]="hospitalForm.controls.hospitalname"></app-validation-error>
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="hospitalPhone" placeholder="10-Digit Phone" minlength="10" maxlength="10" required>
+                    <input type="text" formControlName="contactnumber" class="form-control" placeholder="Hospital Phone">
+                    <app-validation-error [control]="hospitalForm.controls.contactnumber"></app-validation-error>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Save</button>
             </div>
+            <button type="submit" class="my-2 btn btn-primary">Submit</button>
+        </form> -->
+
+        <form #hospitalForm="ngForm" (ngSubmit)="addHospital(hospitalForm);" novalidate>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <input type="text" name="hospitalname" [(ngModel)]="hospitalname" class="form-control" placeholder="Hospital Name" minlength="2" maxlength="30" required #ref_hospitalname>
+
+                    <div *ngIf="ref_hospitalname.invalid && (ref_hospitalname.dirty || ref_hospitalname.touched || formSubmitted)" class="validation-error text-danger">
+                        <div *ngIf="ref_hospitalname.errors.required">Hospital name is required.</div>
+                        <div *ngIf="ref_hospitalname.errors.minlength">Hospital name must be at least 2 characters long.</div>
+                        <div *ngIf="ref_hospitalname.errors.maxlength">Hospital name should not exceed 30 characters.</div>
+                    </div>
+
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" name="contactnumber" [(ngModel)]="contactnumber" class="form-control" placeholder="Hospital Phone" minlength="10" maxlength="10" required #ref_contactnumber>
+
+                    <div *ngIf="ref_contactnumber.invalid && (ref_contactnumber.dirty || ref_contactnumber.touched || formSubmitted)" class="validation-error text-danger">
+                        <div *ngIf="ref_contactnumber.errors.required">Phone number is required.</div>
+                        <div *ngIf="ref_contactnumber.errors.minlength">Please enter a 10 digit phone.</div>
+                        <div *ngIf="ref_contactnumber.errors.maxlength">Please enter a 10 digit phone.</div>
+                    </div>
+
+                </div>
+            </div>
+            <button type="submit" class="my-2 btn btn-primary">Submit</button>
         </form>
+
     </div>
+
 </div>
+
 
 <div class="row data-table my-3">
     <div class="col-md-12">

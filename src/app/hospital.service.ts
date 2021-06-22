@@ -8,8 +8,8 @@ export class HospitalService {
   baseURL = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
 
-  createHospital() {
-
+  createHospital(data) {
+    return this.http.post(this.baseURL + '/hospitals', data);
   }
 
   getAllHospitals() {
@@ -21,7 +21,7 @@ export class HospitalService {
   }
 
   deleteHospital() {
-
+    
   }
 
 }
