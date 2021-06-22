@@ -59,15 +59,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let hospital of hospitalList; let i = index;">
-                    <td>{{hospital.hospitalname}}</td>
-                    <td>{{hospital.contactnumber}}</td>
-                    <td><a class="btn btn-sm btn-link" routerLink="/department">View Department</a></td>
-                    <td>
-                        <a class="btn btn-sm btn-secondary mx-1" (click)="editHospital(hospital);">Edit</a>
-                        <a class="btn btn-sm btn-danger mx-1" (click)="deleteHospital(hospital);">Delete</a>
-                    </td>
-                </tr>
+                <ng-container *ngIf="hospitalList.length > 0">
+                    <tr *ngFor="let hospital of hospitalList; let i = index;">
+                        <td>{{hospital.hospitalname}}</td>
+                        <td>{{hospital.contactnumber}}</td>
+                        <td><a class="btn btn-sm btn-link" routerLink="/department">View Department</a></td>
+                        <td>
+                            <a class="btn btn-sm btn-secondary mx-1" (click)="editHospital(hospital);">Edit</a>
+                            <a class="btn btn-sm btn-danger mx-1" (click)="deleteHospital(hospital);">Delete</a>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <ng-container *ngIf="hospitalList.length == 0">
+                    <tr>
+                        <td colspan="4">There are no records to display.</td>
+                    </tr>
+                </ng-container>
+
             </tbody>
         </table>
     </div>
