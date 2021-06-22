@@ -23,6 +23,18 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
     });
   }
 
+  addHospital() {
+
+  }
+
+  editHospital(hospital) {
+    console.log(hospital);
+  }
+
+  deleteHospital(hospital) {
+    console.log(hospital);
+  }
+
   ngOnDestroy() {
     this.hospitalDataList$.unsubscribe();
   }
