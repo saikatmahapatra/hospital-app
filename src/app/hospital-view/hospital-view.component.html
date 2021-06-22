@@ -16,10 +16,10 @@
             <button type="submit" class="my-2 btn btn-primary">Submit</button>
         </form> -->
 
-        <form #hospitalForm="ngForm" (ngSubmit)="addHospital(hospitalForm);" novalidate>
+        <form #hospitalForm="ngForm" novalidate>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="hospitalname" [(ngModel)]="hospitalname" class="form-control" placeholder="Hospital Name" minlength="2" maxlength="30" required #ref_hospitalname>
+                    <input type="text" name="hospitalname" [(ngModel)]="hospitalObj.hospitalname" class="form-control" placeholder="Hospital Name" minlength="2" maxlength="30" required #ref_hospitalname>
 
                     <div *ngIf="ref_hospitalname.invalid && (ref_hospitalname.dirty || ref_hospitalname.touched || formSubmitted)" class="validation-error text-danger">
                         <div *ngIf="ref_hospitalname.errors.required">Hospital name is required.</div>
@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" name="contactnumber" [(ngModel)]="contactnumber" class="form-control" placeholder="Hospital Phone" minlength="10" maxlength="10" required #ref_contactnumber>
+                    <input type="text" name="contactnumber" [(ngModel)]="hospitalObj.contactnumber" class="form-control" placeholder="Hospital Phone" minlength="10" maxlength="10" required #ref_contactnumber>
 
                     <div *ngIf="ref_contactnumber.invalid && (ref_contactnumber.dirty || ref_contactnumber.touched || formSubmitted)" class="validation-error text-danger">
                         <div *ngIf="ref_contactnumber.errors.required">Phone number is required.</div>
@@ -39,7 +39,10 @@
 
                 </div>
             </div>
-            <button type="submit" class="my-2 btn btn-primary">Submit</button>
+            <button type="submit" class="my-2 btn btn-primary" (click)="addHospital(hospitalForm);" *ngIf="!isEdit">Submit</button>
+            <button type="submit" class="my-2 btn btn-primary" (click)="updateHospital(hospitalForm);" *ngIf="isEdit">Update</button>
+            <!-- <button class="btn btn-link" (click)="returnToAddView(hospitalForm);" *ngIf="isEdit">Add New</button> -->
+
         </form>
 
     </div>

@@ -16,8 +16,8 @@ export class HospitalService {
     return this.http.get(this.baseURL + '/hospitals');
   }
 
-  updateHospital() {
-
+  updateHospital(hospital) {
+    return this.http.put(this.baseURL + '/hospitals/' + hospital.id, hospital);
   }
 
   deleteHospital(hospital) {

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HospitalService } from '../hospital.service';
 import { ValidationService } from '../validation.service';
-import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+//import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-hospital-view',
   templateUrl: './hospital-view.component.html',
@@ -11,25 +11,31 @@ import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@ang
 export class HospitalViewComponent implements OnInit, OnDestroy {
   hospitalList: any = [];
   hospitalDataList$;
-  hospitalForm: FormGroup;
+  //hospitalForm: FormGroup;
   formSubmitted = false;
+  isEdit = false;
+  hospitalObj = {
+    hospitalname: '',
+    contactnumber : '',
+    id: ''
+  };
   constructor(
     private hospitalSvc: HospitalService,
-    private fb: FormBuilder,
+    //private fb: FormBuilder,
     private validator: ValidationService
   ) { }
 
   ngOnInit() {
     this.getAllHospitals();
-    this.createHospitalForm();
+    //this.createHospitalForm();
   }
 
-  createHospitalForm() {
-    this.hospitalForm = new FormGroup({
-      hospitalname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
-      contactnumber: new FormControl('', [Validators.required, this.validator.phone_number]),
-    });
-  }
+  // createHospitalForm() {
+  //   this.hospitalForm = new FormGroup({
+  //     hospitalname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+  //     contactnumber: new FormControl('', [Validators.required, this.validator.phone_number]),
+  //   });
+  // }
 
   getAllHospitals() {
     this.hospitalDataList$ = this.hospitalSvc.getAllHospitals().subscribe((res) => {
@@ -37,12 +43,16 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
     });
   }
 
+  returnToAddView(formObj) {
+    this.isEdit = false;
+    formObj.reset();
+  }
+
   addHospital(formObj) {
     this.formSubmitted = true;
-    console.log(formObj.value);
     if (formObj.valid) {
       this.hospitalSvc.createHospital(formObj.value).subscribe(response => {
-        alert('Hospital added successfully!');
+        alert('Added successfully!');
         formObj.reset();
         this.getAllHospitals();
       });
@@ -50,13 +60,22 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
   }
 
   editHospital(hospital) {
-    console.log(hospital);
+    this.isEdit = true;
+    this.hospitalObj = hospital;
+  }
+
+  updateHospital(formObj) {
+    this.isEdit = !this.isEdit;
+    this.hospitalSvc.updateHospital(this.hospitalObj).subscribe( () => {
+      alert('Updated successfully!');
+      formObj.reset();
+      this.getAllHospitals();
+    });
   }
 
   deleteHospital(hospital) {
-    console.log(hospital);
     this.hospitalSvc.deleteHospital(hospital).subscribe( () => {
-      alert('Hospital has been deleted successfully!');
+      alert('Deleted successfully!');
       this.getAllHospitals();
     });
   }
