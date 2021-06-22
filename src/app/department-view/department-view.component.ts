@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HospitalService } from '../hospital.service';
 import { ValidationService } from '../validation.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-department-view',
   templateUrl: './department-view.component.html',
@@ -12,10 +13,14 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
   departmentDataList$;
   formSubmitted = false;
   isEdit = false;
-  
+  queryParamHospitalId: number;
+  queryParamHospitalName: string = '';
+  pageTitle = 'Departments';
+  showBackLink = false;
+
   departmentObj = {
     departmentname: '',
-    head : '',
+    head: '',
     contactnumber: '',
     hospitalId: '',
     hospitalname: ''
@@ -23,15 +28,33 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private hospitalSvc: HospitalService,
-    private validator: ValidationService
-  ) { }
+    private validator: ValidationService,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      this.queryParamHospitalName = params['name'];
+  });
+   }
 
   ngOnInit() {
-    this.getAllDepts();
+    if (this.queryParamHospitalName) {
+      this.getAllDeptsOfHospital();
+      this.pageTitle = 'Department of ' + this.queryParamHospitalName;
+      this.showBackLink = true;
+
+    } else {
+      this.getAllDepts();
+    }
   }
 
   getAllDepts() {
     this.departmentDataList$ = this.hospitalSvc.getAllDept().subscribe((res) => {
+      this.departmentList = res;
+    });
+  }
+
+  getAllDeptsOfHospital() {
+    this.departmentDataList$ = this.hospitalSvc.getAllDeptOfHosp(this.queryParamHospitalName).subscribe((res) => {
       this.departmentList = res;
     });
   }

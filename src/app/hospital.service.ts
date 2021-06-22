@@ -32,6 +32,10 @@ export class HospitalService {
     return this.http.get(this.baseURL + '/departments');
   }
 
+  getAllDeptOfHosp(str) {
+    return this.http.get(this.baseURL + '/departments?hospitalname=' + str);
+  }
+
   updateDept(department) {
     return this.http.put(this.baseURL + '/departments/' + department.id, department);
   }
