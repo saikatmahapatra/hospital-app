@@ -10,9 +10,24 @@
             "contactnumber": "9632587410"
         },
         {
-            "hospitalname": "ILS Dumdum Kolkata 700028",
-            "contactnumber": "9898989898",
+            "hospitalname": "ILS Hospital, Dumdum Kol 70002",
+            "contactnumber": "9090909090",
             "id": 3
+        },
+        {
+            "hospitalname": "XIIMS Hospital Kol",
+            "contactnumber": "7878787878",
+            "id": 4
+        },
+        {
+            "hospitalname": "Fortis Hospital",
+            "contactnumber": "3738738738",
+            "id": 5
+        },
+        {
+            "hospitalname": "AMRI Hospital Kol",
+            "contactnumber": "3748573857",
+            "id": 6
         }
     ],
     "departments": [{
@@ -54,6 +69,30 @@
             "contactnumber": "9876543210",
             "hospitalId": 2,
             "hospitalname": "CSI Mission Hospital"
+        },
+        {
+            "id": 6,
+            "departmentname": "opthalmology",
+            "head": "Dr. J Sirisha",
+            "contactnumber": "9876543210",
+            "hospitalId": 4,
+            "hospitalname": "XIIMS Hospital Kol"
+        },
+        {
+            "id": 7,
+            "departmentname": "ENT",
+            "head": "Dr. J SS",
+            "contactnumber": "9876543210",
+            "hospitalId": 5,
+            "hospitalname": "Fortis Hospital"
+        },
+        {
+            "id": 8,
+            "departmentname": "Heart",
+            "head": "Dr. J ABC",
+            "contactnumber": "9876543210",
+            "hospitalId": 6,
+            "hospitalname": "AMRI Hospital Kol"
         }
     ]
 }
