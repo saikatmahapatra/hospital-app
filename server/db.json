@@ -10,19 +10,9 @@
             "contactnumber": "9632587410"
         },
         {
-            "hospitalname": "ILS Dumdum",
+            "hospitalname": "ILS Dumdum Kolkata 700028",
             "contactnumber": "9898989898",
             "id": 3
-        },
-        {
-            "hospitalname": "AMRi - Saltlake",
-            "contactnumber": "9989898989",
-            "id": 4
-        },
-        {
-            "hospitalname": "DNV",
-            "contactnumber": "5353636636",
-            "id": 5
         }
     ],
     "departments": [{
