@@ -32,7 +32,8 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe(params => {
-      this.queryParamHospitalName = params['name'];
+      this.queryParamHospitalId = params['hospitalId'];
+      this.queryParamHospitalName = params['hospitalName'];
   });
    }
 
@@ -54,7 +55,7 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
   }
 
   getAllDeptsOfHospital() {
-    this.departmentDataList$ = this.hospitalSvc.getAllDeptOfHosp(this.queryParamHospitalName).subscribe((res) => {
+    this.departmentDataList$ = this.hospitalSvc.getAllDeptOfHosp(this.queryParamHospitalId, this.queryParamHospitalName).subscribe((res) => {
       this.departmentList = res;
     });
   }
