@@ -24,4 +24,20 @@ export class HospitalService {
     return this.http.delete(this.baseURL + '/hospitals/' + hospital.id);
   }
 
+  createDept(data) {
+    return this.http.post(this.baseURL + '/departments', data);
+  }
+
+  getAllDept() {
+    return this.http.get(this.baseURL + '/departments');
+  }
+
+  updateDept(department) {
+    return this.http.put(this.baseURL + '/departments/' + department.id, department);
+  }
+
+  deleteDept(department) {
+    return this.http.delete(this.baseURL + '/departments/' + department.id);
+  }
+
 }
