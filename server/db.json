@@ -1,0 +1,13 @@
+{
+    "hospitals": [
+        { "id": 1, "hospitalname": "KIMS", "contactnumber": "9632587410" },
+        { "id": 2, "hospitalname": "CSI Mission Hospital", "contactnumber": "9632587410" }
+    ],
+    "departments": [
+        { "id": 1, "departmentname": "nephrology", "head": "Dr. A P Kulashekhar", "contactnumber": "9876543210", "hospitalId": 1, "hospitalname": "KIMS" },
+        { "id": 2, "departmentname": "neurology", "head": "Dr.B Raj Kumar", "contactnumber": "9876543210", "hospitalId": 1, "hospitalname": "KIMS" },
+        { "id": 3, "departmentname": "cardiology", "head": "Dr. L Sri Devi", "contactnumber": "9876543210", "hospitalId": 1, "hospitalname": "KIMS" },
+        { "id": 4, "departmentname": "ENT", "head": "Dr. K Ram Prasad", "contactnumber": "9876543210", "hospitalId": 2, "hospitalname": "CSI Mission Hospital" },
+        { "id": 5, "departmentname": "opthalmology", "head": "Dr. J Sirisha", "contactnumber": "9876543210", "hospitalId": 2, "hospitalname": "CSI Mission Hospital" }
+    ]
+}
