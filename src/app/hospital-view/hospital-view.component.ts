@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HospitalService } from '../hospital.service';
 @Component({
   selector: 'app-hospital-view',
   templateUrl: './hospital-view.component.html',
-  styleUrls: ['./hospital-view.component.scss']
+  styleUrls: ['./hospital-view.component.scss'],
+  providers: [HospitalService]
 })
-export class HospitalViewComponent implements OnInit {
-
-  constructor() { }
+export class HospitalViewComponent implements OnInit, OnDestroy {
+  hospitalList: any = [];
+  hospitalDataList$;
+  constructor(
+    private hospitalSvc: HospitalService
+  ) { }
 
   ngOnInit() {
+    this.getAllHospitals();
+  }
+
+  getAllHospitals() {
+    this.hospitalDataList$ = this.hospitalSvc.getAllHospitals().subscribe((res) => {
+      this.hospitalList = res;
+    });
+  }
+
+  ngOnDestroy() {
+    this.hospitalDataList$.unsubscribe();
   }
 
 }

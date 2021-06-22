@@ -1,2 +1,33 @@
 <h1>Hospitals</h1>
-<a class="btn btn-success">Add New</a>
+
+<div class="row my-3">
+    <div class="col-md-12">
+
+    </div>
+</div>
+
+<div class="row data-table my-3">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Hospital Name</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Departments</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hospital of hospitalList; let i = index;">
+                    <td>{{hospital.hospitalname}}</td>
+                    <td>{{hospital.contactnumber}}</td>
+                    <td><a class="btn btn-sm btn-link" routerLink="/department">View Department</a></td>
+                    <td>
+                        <a class="btn btn-sm btn-secondary mx-1" (click)="editHospital(hospital);">Edit</a>
+                        <a class="btn btn-sm btn-danger mx-1" (click)="deleteHospital(hospital);">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
