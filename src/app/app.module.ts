@@ -6,13 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HospitalViewComponent } from './hospital-view/hospital-view.component';
 import { DepartmentViewComponent } from './department-view/department-view.component';
-import { ValidationErrorComponent } from './validation-error/validation-error.component';
 @NgModule({
   declarations: [
     AppComponent,
     HospitalViewComponent,
-    DepartmentViewComponent,
-    ValidationErrorComponent
+    DepartmentViewComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +19,7 @@ import { ValidationErrorComponent } from './validation-error/validation-error.co
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [ValidationErrorComponent],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

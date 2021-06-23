@@ -1,17 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HospitalService } from '../hospital.service';
-import { ValidationService } from '../validation.service';
-//import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-hospital-view',
   templateUrl: './hospital-view.component.html',
   styleUrls: ['./hospital-view.component.scss'],
-  providers: [HospitalService, ValidationService]
+  providers: [HospitalService]
 })
 export class HospitalViewComponent implements OnInit, OnDestroy {
   hospitalList: any = [];
   hospitalDataList$;
-  //hospitalForm: FormGroup;
+  hospitalForm: FormGroup;
   formSubmitted = false;
   isEdit = false;
   hospitalObj = {
@@ -21,21 +20,28 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
   };
   constructor(
     private hospitalSvc: HospitalService,
-    //private fb: FormBuilder,
-    private validator: ValidationService
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.getAllHospitals();
-    //this.createHospitalForm();
+    this.createHospitalForm();
   }
 
-  // createHospitalForm() {
-  //   this.hospitalForm = new FormGroup({
-  //     hospitalname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
-  //     contactnumber: new FormControl('', [Validators.required, this.validator.phone_number]),
-  //   });
-  // }
+  createHospitalForm() {
+    this.hospitalForm = new FormGroup({
+      hospitalname: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+      contactnumber: new FormControl(null, [Validators.required, Validators.pattern('^\\d{10}$')]),
+    });
+  }
+
+  get hospitalname() {
+    return this.hospitalForm.get('hospitalname');
+  }
+
+  get contactnumber() {
+    return this.hospitalForm.get('contactnumber');
+  }
 
   getAllHospitals() {
     this.hospitalDataList$ = this.hospitalSvc.getAllHospitals().subscribe((res) => {

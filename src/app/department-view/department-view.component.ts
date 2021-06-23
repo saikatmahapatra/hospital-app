@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HospitalService } from '../hospital.service';
-import { ValidationService } from '../validation.service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-department-view',
   templateUrl: './department-view.component.html',
   styleUrls: ['./department-view.component.scss'],
-  providers: [HospitalService, ValidationService]
+  providers: [HospitalService]
 })
 export class DepartmentViewComponent implements OnInit, OnDestroy {
   departmentList: any = [];
@@ -28,7 +27,6 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private hospitalSvc: HospitalService,
-    private validator: ValidationService,
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe(params => {
