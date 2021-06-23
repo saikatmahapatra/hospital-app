@@ -60,6 +60,7 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
       this.hospitalSvc.createHospital(formObj.value).subscribe(response => {
         alert('Added successfully!');
         formObj.reset();
+        this.formSubmitted = false;
         this.getAllHospitals();
       });
     }
@@ -71,12 +72,16 @@ export class HospitalViewComponent implements OnInit, OnDestroy {
   }
 
   updateHospital(formObj) {
-    this.isEdit = !this.isEdit;
-    this.hospitalSvc.updateHospital(this.hospitalObj).subscribe( () => {
-      alert('Updated successfully!');
-      formObj.reset();
-      this.getAllHospitals();
-    });
+    this.formSubmitted = true;
+    if (formObj.valid) {
+      this.isEdit = !this.isEdit;
+      this.hospitalSvc.updateHospital(this.hospitalObj).subscribe( () => {
+        alert('Updated successfully!');
+        formObj.reset();
+        this.formSubmitted = false;
+        this.getAllHospitals();
+      });
+    }
   }
 
   deleteHospital(hospital) {
