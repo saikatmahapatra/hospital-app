@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HospitalService } from '../hospital.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-department-view',
   templateUrl: './department-view.component.html',
@@ -10,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DepartmentViewComponent implements OnInit, OnDestroy {
   departmentList: any = [];
   departmentDataList$;
+  hospitalList: any = [];
+  deptForm: FormGroup;
   formSubmitted = false;
   isEdit = false;
   queryParamHospitalId: number;
@@ -36,6 +39,7 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
+    this.createDeptForm();
     if (this.queryParamHospitalName) {
       this.getAllDeptsOfHospital();
       this.pageTitle = 'Department of ' + this.queryParamHospitalName;
@@ -44,6 +48,38 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
     } else {
       this.getAllDepts();
     }
+  }
+
+  createDeptForm() {
+    this.getAllHospitals();
+    this.deptForm = new FormGroup({
+      hospitalId: new FormControl(null, [Validators.required]),
+      departmentname: new FormControl(null, [Validators.required]),
+      head: new FormControl(null, [Validators.required]),
+      contactnumber: new FormControl(null, [Validators.required, Validators.pattern('^\\d{10}$')]),
+    });
+  }
+
+  getAllHospitals() {
+    this.hospitalSvc.getAllHospitals().subscribe((res) => {
+      this.hospitalList = res;
+    });
+  }
+
+  get hospitalId() {
+    return this.deptForm.get('hospitalId');
+  }
+
+  get departmentname() {
+    return this.deptForm.get('departmentname');
+  }
+
+  get head() {
+    return this.deptForm.get('head');
+  }
+
+  get contactnumber() {
+    return this.deptForm.get('contactnumber');
   }
 
   getAllDepts() {
@@ -58,12 +94,41 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
     });
   }
 
+ addDept(formObj) {
+    this.formSubmitted = true;
+    if (formObj.valid) {
+      this.hospitalSvc.createDept(formObj.value).subscribe(response => {
+        alert('Department Added Successfully!');
+        formObj.reset();
+        this.formSubmitted = false;
+        this.getAllDepts();
+      });
+    }
+  }
+
   editDept(dept) {
-    alert('edit operation is not implemented');
+    this.isEdit = true;
+    this.departmentObj = dept;
+  }
+
+  updateDept(formObj) {
+    this.formSubmitted = true;
+    if (formObj.valid) {
+      this.isEdit = !this.isEdit;
+      this.hospitalSvc.updateDept(this.departmentObj).subscribe( () => {
+        alert('Department Updated successfully!');
+        formObj.reset();
+        this.formSubmitted = false;
+        this.getAllDepts();
+      });
+    }
   }
 
   deleteDept(dept) {
-    alert('delete operation is not implemented');
+    this.hospitalSvc.deleteDept(dept).subscribe( () => {
+      alert('Department Deleted successfully!');
+      this.getAllDepts();
+    });
   }
 
   ngOnDestroy() {
