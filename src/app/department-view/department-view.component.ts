@@ -101,7 +101,11 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
         alert('Department Added Successfully!');
         formObj.reset();
         this.formSubmitted = false;
-        this.getAllDepts();
+        if (this.queryParamHospitalName) {
+          this.getAllDeptsOfHospital();
+        } else {
+          this.getAllDepts();
+        }
       });
     }
   }
@@ -119,7 +123,11 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
         alert('Department Updated successfully!');
         formObj.reset();
         this.formSubmitted = false;
-        this.getAllDepts();
+        if (this.queryParamHospitalName) {
+          this.getAllDeptsOfHospital();
+        } else {
+          this.getAllDepts();
+        }
       });
     }
   }
@@ -127,7 +135,11 @@ export class DepartmentViewComponent implements OnInit, OnDestroy {
   deleteDept(dept) {
     this.hospitalSvc.deleteDept(dept).subscribe( () => {
       alert('Department Deleted successfully!');
-      this.getAllDepts();
+      if (this.queryParamHospitalName) {
+        this.getAllDeptsOfHospital();
+      } else {
+        this.getAllDepts();
+      }
     });
   }
 

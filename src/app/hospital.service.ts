@@ -37,7 +37,7 @@ export class HospitalService {
   }
 
   updateDept(department) {
-    return this.http.put(this.baseURL + '/departments/?_expand=hospital' + department.id, department);
+    return this.http.put(this.baseURL + '/departments/' + department.id, department);
   }
 
   deleteDept(department) {
