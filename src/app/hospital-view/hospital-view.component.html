@@ -6,11 +6,18 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <input type="text" name="hospitalname" [(ngModel)]="hospitalObj.hospitalname" formControlName="hospitalname" class="form-control" placeholder="Hospital Name">
-                    <div *ngIf="(hospitalname.invalid && (hospitalname.touched || formSubmitted))" class="text-danger small">Please enter hospital name (2-30 chars in length)</div>
+                    <div *ngIf="(hospitalname.invalid && (hospitalname.touched || formSubmitted))" class="text-danger small">
+                        <div *ngIf="hospitalname.errors.required">Please enter hospital name</div>
+                        <div *ngIf="hospitalname.errors.minlength">Hospital name must be minimum 2 chars</div>
+                        <div *ngIf="hospitalname.errors.maxlength">Hospital name should not exceed 30 chars</div>
+                    </div>
                 </div>
                 <div class="form-group col-md-4">
                     <input type="text" name="contactnumber" [(ngModel)]="hospitalObj.contactnumber" formControlName="contactnumber" class="form-control" placeholder="Hospital Phone">
-                    <div *ngIf="(contactnumber.invalid && (contactnumber.touched || formSubmitted))" class="text-danger small">Please enter a 10 digit phone number</div>
+                    <div *ngIf="(contactnumber.invalid && (contactnumber.touched || formSubmitted))" class="text-danger small">
+                        <div *ngIf="contactnumber.errors.required">Please enter hospital phone</div>
+                        <div *ngIf="contactnumber.errors.pattern">Please enter valid 10 digit phone</div>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="my-2 btn btn-primary" (click)="addHospital(hospitalForm);" *ngIf="!isEdit">Submit</button>
