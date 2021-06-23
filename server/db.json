@@ -35,56 +35,64 @@
             "departmentname": "nephrology",
             "head": "Dr. A P Kulashekhar",
             "contactnumber": "9876543210",
-            "hospitalId": 1
+            "hospitalId": 1,
+            "hospitalname": "KIMS"
         },
         {
             "id": 2,
             "departmentname": "neurology",
             "head": "Dr.B Raj Kumar",
             "contactnumber": "9876543210",
-            "hospitalId": 1
+            "hospitalId": 1,
+            "hospitalname": "KIMS"
         },
         {
             "id": 3,
             "departmentname": "cardiology",
             "head": "Dr. L Sri Devi",
             "contactnumber": "9876543210",
-            "hospitalId": 1
+            "hospitalId": 1,
+            "hospitalname": "KIMS"
         },
         {
             "id": 4,
             "departmentname": "ENT",
             "head": "Dr. K Ram Prasad",
             "contactnumber": "9876543210",
-            "hospitalId": 2
+            "hospitalId": 2,
+            "hospitalname": "CSI Mission Hospital"
         },
         {
             "id": 5,
             "departmentname": "opthalmology",
             "head": "Dr. J Sirisha",
             "contactnumber": "9876543210",
-            "hospitalId": 2
+            "hospitalId": 2,
+            "hospitalname": "CSI Mission Hospital"
         },
         {
             "id": 6,
             "departmentname": "opthalmology",
             "head": "Dr. J Sirisha",
             "contactnumber": "9876543210",
-            "hospitalId": 4
+            "hospitalId": 4,
+            "hospitalname": "XIIMS Hospital Kol"
         },
         {
             "id": 7,
             "departmentname": "ENT",
             "head": "Dr. J SS",
             "contactnumber": "9876543210",
-            "hospitalId": 5
+            "hospitalId": 5,
+            "hospitalname": "Fortis Hospital"
         },
         {
             "id": 8,
             "departmentname": "Heart",
             "head": "Dr. J ABC",
             "contactnumber": "9876543210",
-            "hospitalId": 6
+            "hospitalId": 6,
+            "hospitalname": "AMRI Hospital Kol"
         }
     ]
 }
