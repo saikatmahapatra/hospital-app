@@ -29,15 +29,15 @@ export class HospitalService {
   }
 
   getAllDept() {
-    return this.http.get(this.baseURL + '/departments');
+    return this.http.get(this.baseURL + '/departments/?_expand=hospital');
   }
 
   getAllDeptOfHosp(id, name) {
-    return this.http.get(this.baseURL + '/departments?hospitalId=' + id);
+    return this.http.get(this.baseURL + '/departments/?_expand=hospital&hospitalId=' + id);
   }
 
   updateDept(department) {
-    return this.http.put(this.baseURL + '/departments/' + department.id, department);
+    return this.http.put(this.baseURL + '/departments/?_expand=hospital' + department.id, department);
   }
 
   deleteDept(department) {
