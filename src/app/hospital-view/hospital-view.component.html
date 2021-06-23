@@ -30,11 +30,12 @@
 
 <div class="row data-table my-3">
     <div class="col-md-12">
+        <button class="btn btn-success btn-sm" [appSort]="hospitalList" data-order="asc" data-name="hospitalname">Sort by Hospital Name</button>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Hospital Name</th>
-                    <th scope="col">Contact Number</th>
+                    <th scope="col" [appSort]="hospitalList" data-order="asc" data-name="hospitalname">Hospital Name</th>
+                    <th scope="col" [appSort]="hospitalList" data-order="asc" data-name="contactnumber">Contact Number</th>
                     <th scope="col">Departments</th>
                     <th scope="col">Actions</th>
                 </tr>

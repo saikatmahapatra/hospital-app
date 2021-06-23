@@ -2,6 +2,7 @@
 <a routerLink="/hospital" *ngIf="showBackLink">Back to Hospital List</a>
 <div class="row data-table my-3">
     <div class="col-md-12">
+        <button class="btn btn-success btn-sm" [appSort]="departmentList" data-order="asc" data-name="departmentname">Sort by Dept Name</button>
         <table class="table">
             <thead>
                 <tr>
