@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HospitalViewComponent } from './hospital-view/hospital-view.component';
 import { DepartmentViewComponent } from './department-view/department-view.component';
+import { SortDirective } from './directive/sort.directive';
 @NgModule({
   declarations: [
     AppComponent,
     HospitalViewComponent,
-    DepartmentViewComponent
+    DepartmentViewComponent,
+    SortDirective
   ],
   imports: [
     BrowserModule,
